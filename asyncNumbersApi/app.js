@@ -35,8 +35,10 @@ async function getFourFactsAboutNumbers() {
         let data = await Promise.all( nums.map( num => $.getJSON(`${URL}/${num}?json`) ) );
         data.forEach(numData => $three.append(`<li>${numData.text}</li>`));
     } catch (error) {
-        
+        return new Error(`Something happened: ${err.message}`);
     }
 }
-Promise.all(numbersArr2.map(num => $.getJSON(`${URL}/${num}?json`)))
-.then(data => data.forEach(numData => $three.append(`<li>${numData.text}</li>`)))
+
+getOneNumFact();
+getMultipleNumbersFact();
+getFourFactsAboutNumbers();
